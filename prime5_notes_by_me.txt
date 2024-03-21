@@ -1,0 +1,629 @@
+SRE/ Devops fundamentals 
+https://amod-kadam.medium.com/setting-up-nginx-ingress-controller-with-eks-f27390bcf804
+
+How to take requirements from the Project?
+
+tasks:
+1. AWS 12+ projects
+
+Jenkins CICD Pipeline
+
+Jenkins Shared Library Project
+
+Docker Advanced Project
+
+Kubernetes deployment on EKS + 3 tier Architecture with Microservice deployment and visualization on data transfer
+
+Kubernetes Istio Kigali jaeger monitoring (O)
+
+Python Real time Programming
+
+Chat bot Automation with Python and Nodejs
+
+Shell Scripting Real time Scenarios + Individual Jira Portal Creation with Project Management automation
+
+Kubernetes Cluster and Pod/Container monitoring with Grafana & Prometheus using HELM CHARTS and RBAC
+
+AWS Architecture creation withTerraform
+
+Python DJANGO Application deployment on AWS with TERRAFORM
+
+Ansible Automation and roles creation
+
+Red Hat Linux Disk/User/File/Selinux Automations
+
+GITLAB CICD Pipeline
+
+
+Session 2:
+
+Java application for Maven
+Android for Graddle
+python for python
+reactjs/Nodejs NPM install
+
+POM.XML  project object model
+
+mvn test /will run the code present in the test folder
+mvn clean
+mvn compile
+mvn package creates JAR or WAR files for the project to convert it into a distributable formats
+mvn install
+
+tomcat
+
+curl vrs wget 
+
+3 tier : front end, back end, database 
+
+Rest API's calling actions 
+GET (get the data from database)
+DELETE (delete the data from the database)
+PUT (Putting the data & Update the data)
+POST (New data add to database)
+
+every company has min 4 envs accounts
+dev (developement)
+stage (stagging)
+preview 
+prod (production)
+
+tar xvzf 
+x extract
+v verbose 
+f filename
+z zip
+/opt is to download operational tools software files
+RPM redhat package manager
+
+systemctl start docker   to start the docker
+systemctl enable docker	 to run the docker 24/7 
+
+
+FROM tomcat:tag
+MAINTAINER
+ENV tomcat_version 8.0.26
+ADD 
+RUN mv /tmp/*.war $CATLINA_HOME
+EXPOSE 8080
+CMD ["catline.sh", "run"]
+
+SDLC (software deployment life cycle)
+
+Session 3 (CICD)
+
+VS code Test
+1) code quality / security , (Sonarqube checks the quality of code)
+2) build (Maven is build tool) Convers 10 GB code to 10 MB code storted in cat in Githbub 
+Jfrogs tools which stores the files like a repo (smallfiles + articacts / binararies ) (e.g size of file at Jfrog is 10 mb) 
+Artifacts are nothing but binaries like jar files, library files or executables like .exe which needs to be stored in a central location 
+so that they can be deployed to a server to run.
+
+Maven is build tool which builds(compiles) the source code into binaries (jar files etc,) and JFrog is a repository which stores those binaries in a particular folder structure, like how Git stores the source code of the application
+
+This 10MB file converts into an image
+3) deploy
+code > Jar file > image > container > POD
+java application >> container >> POD
+
+Declarative pipeline
+1) Pipeline
+2) agent
+3) Stages
+4) stage
+	- steps
+
+Session 4 (CICD)
+
+shared jenkiks folder path 
+/vars/<files>
+
+devsecops consists below tools 
+java code scnanning tools are sonarqube, checkmark & fortify
+docker image scanning security tool is trivy
+
+* General attacks
+denial of service attact 
+xml enternal entry attack
+values shading
+password management / hardcode password
+
+java + maven + pom.xml 
+
+Jenkins Shared Library 
+`var` is the mandatory first folder in github under Jenkins shared L 
+If you are calling library in Jenkins pipeline
+@Library('my-shared-library')_
+ 
+
+Difference between statefulset and depplyment
+
+Deployment: Deployment is a resource that manages a set of identical pods. 
+	    It allows you to manage the state of your application so that the correct number of replicas are running at all times.
+1. Scalability: Deployment can scale up and down the number of replicas based on demand, 
+		ensuring that your application can handle increasing traffic loads.
+2. Rolling Updates: Deployment can update the pods in a rolling fashion, allowing you to perform updates without any downtime.
+3. Automatic Rollbacks: Deployments can automatically roll back to the previous version if an update fails, 
+                        ensuring that your application remains available.
+
+
+StatefulSet: StatefulSet is a resource that manages a set of identical stateful pods. 
+             It’s useful for managing stateful applications that require stable network identities and persistent storage.
+1. Ordered pod creation: StatefulSet ensures that each pod is created in a specific order, 
+			allowing applications to rely on the order of pod creation for initialization tasks.
+2. Stable network identities: StatefulSet provides stable network identities for each pod, 
+			      making it easy to communicate with specific pods in the set.
+3. Persistent storage: StatefulSet can manage the creation and deletion of persistent volume claims (PVCs), 
+			ensuring that each pod has a unique persistent storage.
+
+Deployment is useful for managing stateless applications, 
+while StatefulSet is useful for managing stateful applications that require stable network identities and persistent storage
+
+
+Securing Docker image
+    1. Choosing the right base image from a trusted source and keeping it small
+    2. Using multi-stage builds
+    3. Rebuilding images
+    4. Check your image for vulnerabilities
+     
+How to Reduce Docker Image Size?
+    1. Use Minimal Base Images
+    2. Use Docker Multistage Builds
+    3. Minimize the Number of Layers
+    4. Keep Application Data Elsewhere
+    5. Use Dockerignore
+    6. Understanding caching
+
+FROM alpine:latest
+ENTRYPOINT ["ls"]
+CMD ["-alh"]
+
+CMD can be overwritten
+
+
+HOW ALB CONTROLLER WORKS?
+
+The controller runs on the worker nodes, so it needs access to the AWS ALB/NLB resources via IAM permissions. 
+The IAM permissions can either be setup via IAM roles for ServiceAccount or can be attached directly to the worker node IAM roles.
+1. Create IAM OIDC provider
+2. Download IAM policy for the AWS Load Balancer Controller
+3. Create an IAM policy called AWSLoadBalancerControllerIAMPolicy
+4. Create a IAM role and ServiceAccount for the Load Balancer controller, use the ARN from the step above
+5. helm repo add eks https://aws.github.io/eks-charts
+6. helm install aws-load-balancer-controller eks/aws-load-balancer-controller --set clusterName=xyz -n ingress
+
+internet > Loadbalancer > ingress > ingress controller checks > service > Loadbalance traffic across avilable POD of that specific service
+
+Prometheus scrapes metrics from kubernetes componnets and applications.
+Gafana provides Visuallization and Dashboards capabilities.
+Node level metrics: collects and monitor node level metrics(CPU,memory,disk,network)Using tools like Node Exporter or Cadviser.
+These tools export metrics to Prometheus, which stores and manages the data.
+Fluentd- Deploy fluentd as a Daemonset on each node in the K8s cluster. 
+so fluentd collect logs from containers running on each node and send them to Elasticsarch
+
+https://github.com/infracloudio/csvserver/tree/master
+https://github.com/srsonawane1990/solution
+
+How to connect docker compose container to normal container
+
+Docker benificts:
+1. Scalling 
+2. Networking
+3. Shift and transport
+
+Docker architechure:
+1. Docker client
+2. Docker daemon
+3. Docker Registry
+4. Docker image
+5. Docker Container
+
+docker build - convert Dockerfile to image
+docker pull  - Pulling image from docker hub to local server
+docker run   - Convert image to container
+
+FROM  - install the os (package)
+MAINTAINER swapnil sonawane ( - owner of docker file name and email id
+ENV version 1.2.1
+RUN
+COPY can be used to copy anytype of files 
+ADD can be used zip files or any type of files. copy cannot unzip but add do
+ENTRYPOINT - Cannot overwritten
+CMD ["sh", "test.sh"]  can be overwritten
+
+it -- iterative mode
+docker -it --name=c1 --net=(network) -d -p <host Port>:<Container port> <image>
+docker exec -it c1 bash    (able to login in to container)
+docker commit c1 ubunut-new-image:1.2.2 (To save the container data as new image)
+docker save ubuntu-new-image:1.2.2 --output=backup.tar (To save the image as tar)
+docker load -i backup.tar (To unzip the image form tar)
+docker start/stop/restart/
+docker tag/push
+
+CONTAINER STATES
+1. Created
+2. Running
+3. Restarting
+4. Exited
+5. Pause
+
+Dokcer networking
+1. Bridge network: Default network, networks apply to containers running on the same Docker daemon host
+2. Host network: Standalone containers, use the host's networking directly
+3. Overlay Network: Network between two standalone containers on different docker daeman
+
+### Kubernetes componets:
+# Master Node
+1. API (Application programming interface) Frontend 
+2. ETCD (Database in k8s) Backend (key-value pair store)
+3. Sheduller
+4. Controller Manager (brain in k8s. gives the command, that runs controllers)
+	Node controller: 
+	Replication controller: 
+	Endpoints controller: Populates the endpoints object (that is, it joins Services and Pods)
+	Service 
+# Worker Node
+5. Kube proxy (It's a pod which does the internal routing on working node) 
+6. Kubelet: 
+7. Container Runtime
+ 
+## Manifest File Componets:
+apiVersion
+kind
+metadata
+spec
+
+Nodeport universal port range is from 30000 to 32767.
+Nodeport -> Host Node, Port -> Service, target-port -> POD
+
+
+############## Session 7 #########
+############### Python ###########
+
+##Usecases
+Automation - Business needs and day to day activities
+Data Visulations - plot and graphical representations
+Data analytics - Analyse and understand raw data for insight and trends 
+Al mactione learning - Simulate human behaviour and to learn from the past data without hard code
+Create web applications.
+Handle databases
+Business and accounting to perform complex matheatical operations along with quantitative and qualitative analysis
+
+##Data Types:
+
+1. list: (mutable) square bracket []
+2. tuple: (immutable) parenthesis  ()
+3. range:
+4. data: dictionary key value pair; No duplicates allowed, curly brackets {}
+5. set : unordered collections of elements in which no element is repeatable 
+
+##operators:
+Comparison operator
+Indentity operator  is, is not e.g. a is b, a is not b
+Bitwise operator
+
+##operations with strings
+len()
+str.
+
+## Functions arguments:
+case 1 
+def name(fname, mtame="jenkins", boardname = "Jira")
+print(name)
+
+
+
+######################### Chat Bot Automation ############# 26 /11/2023
+A chatbot is a software that integrates with messaging app to simulate a conversion
+with a user in natural language through messaging applications, website etcs
+
+# Types of chatbot
+1.FAQ chatbot   frequently asked question
+2.Virtual assistent
+3.Virtual agent 
+
+telegram bot
+slack bot
+
+Frontend - react js m angular js (UI) 1 layer
+Backend- python, node js  java 2 layer 
+Database - db       3 layer
+
+JAVA + POM XML
+NODE JS + PACKAGE JSON
+
+slack bot swap_bot
+
+
+helm
+1. Sharing
+2. We can deploy multiple software in one go.
+3. 
+
+
+#######Shell Scripting#############
+sed - Stream editor 
+sed -n '1,3'p test.sh ----> prints 1 to 3 lines -n number, p print
+awk '{print}' test.sh ----> print the whole file
+awk /manager/'{print}' test.sh  -----> print the lines with 'manager' word 
+awk -F'[.]'/
+
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 
+chmod 700 get_helm.sh 
+./get_helm.sh
+
+
+
+EKS Fargate:
+eksctl create fargateprofile --cluster demo-fargate-eks --region us-east-1 --name alb-sample-app --namespace game-2048
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
+export cluster_name=demo-fargate-eks
+oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5) 
+eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
+aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
+eksctl create iamserviceaccount --cluster=demo-fargate-eks --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-arn=arn:aws:iam::351054065682:policy/AWSLoadBalancerControllerIAMPolicy --approve
+
+helm repo add eks https://aws.github.io/eks-charts
+helm repo update eks
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=demo-fargate-eks  --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller --set region=us-east-1 --set vpcId=vpc-046c6c98681dd9084
+
+kubectl get deployment -n kube-system aws-load-balancer-controller
+
+########### AWS GuardDuty ###############
+Amazon GuardDuty uses intelligent and continuous threat detection of your AWS accounts, 
+data stored in Amazon S3, and workloads to reduce risk.
+
+It's essentially a security service that keeps an eye on everything happening in your account
+ at an infrastructure level, alerting you to any undesirable behavior.
+
+
+################ 𝗟𝗲𝘁'𝘀 𝗲𝘅𝗽𝗹𝗼𝗿𝗲 𝟮𝟬 𝗲𝘀𝘀𝗲𝗻𝘁𝗶𝗮𝗹 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝘄𝗶𝘁𝗵 𝗽𝗿𝗮𝗰𝘁𝗶𝗰𝗮𝗹 𝗲𝘅𝗮𝗺𝗽𝗹𝗲𝘀 ##############
+
+date update using ntp
+
+𝗶𝗳𝗰𝗼𝗻𝗳𝗶𝗴: Display network interface configuration.
+𝗶𝗳𝗰𝗼𝗻𝗳𝗶𝗴
+
+𝗶𝗽: Show or manipulate routing, devices, policy routing, and tunnels.
+𝗶𝗽 𝗮𝗱𝗱𝗿 𝘀𝗵𝗼𝘄
+
+𝗽𝗶𝗻𝗴: Test network reachability.
+𝗽𝗶𝗻𝗴 𝗴𝗼𝗼𝗴𝗹𝗲.𝗰𝗼𝗺
+
+𝘁𝗿𝗮𝗰𝗲𝗿𝗼𝘂𝘁𝗲: Print the route packets take to network host.
+𝘁𝗿𝗮𝗰𝗲𝗿𝗼𝘂𝘁𝗲 𝗴𝗼𝗼𝗴𝗹𝗲.𝗰𝗼𝗺
+
+𝗻𝗲𝘁𝘀𝘁𝗮𝘁: Display network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
+𝗻𝗲𝘁𝘀𝘁𝗮𝘁 -𝗮𝗻
+
+𝘀𝘀: Another tool to investigate sockets.
+𝘀𝘀 -𝘁𝘂𝗻𝗮𝗽𝗹
+
+𝗱𝗶𝗴: DNS lookup utility.
+𝗱𝗶𝗴 𝗴𝗼𝗼𝗴𝗹𝗲.𝗰𝗼𝗺
+
+𝗻𝘀𝗹𝗼𝗼𝗸𝘂𝗽: Query Internet name servers interactively.
+𝗻𝘀𝗹𝗼𝗼𝗸𝘂𝗽 𝗴𝗼𝗼𝗴𝗹𝗲.𝗰𝗼𝗺
+
+𝗿𝗼𝘂𝘁𝗲: Show or manipulate IP routing table.
+𝗿𝗼𝘂𝘁𝗲 -𝗻
+
+𝗮𝗿𝗽: Display or modify the ARP cache.
+𝗮𝗿𝗽 -𝗮
+
+𝗶𝘄𝗰𝗼𝗻𝗳𝗶𝗴 : Configure a wireless network interface.
+𝗶𝘄𝗰𝗼𝗻𝗳𝗶𝗴
+
+𝗲𝘁𝗵𝘁𝗼𝗼𝗹: Display or change Ethernet card settings.
+𝗲𝘁𝗵𝘁𝗼𝗼𝗹 𝗲𝘁𝗵𝟬
+
+𝘁𝗰𝗽𝗱𝘂𝗺𝗽: Dump traffic on a network.
+𝘁𝗰𝗽𝗱𝘂𝗺𝗽 -𝗶 𝗲𝘁𝗵𝟬
+
+𝗶𝗽𝘁𝗮𝗯𝗹𝗲𝘀: Administration tool for IPv4 packet filtering and NAT.
+𝗶𝗽𝘁𝗮𝗯𝗹𝗲𝘀 -𝗟
+
+𝗵𝗼𝘀𝘁𝗻𝗮𝗺𝗲 : Show or set the system's host name.
+𝗵𝗼𝘀𝘁𝗻𝗮𝗺𝗲
+
+𝗰𝘂𝗿𝗹: Command-line tool for transferring data with URLs.
+𝗰𝘂𝗿𝗹 𝗵𝘁𝘁𝗽://𝗲𝘅𝗮𝗺𝗽𝗹𝗲.𝗰𝗼𝗺
+
+𝘄𝗴𝗲𝘁: Non-interactive network downloader.
+𝘄𝗴𝗲𝘁 𝗵𝘁𝘁𝗽://𝗲𝘅𝗮𝗺𝗽𝗹𝗲.𝗰𝗼𝗺/𝗳𝗶𝗹𝗲.𝘇𝗶𝗽
+
+𝘀𝘀𝗵: Secure Shell for secure network communication.
+𝘀𝘀𝗵 𝘂𝘀𝗲𝗿@𝗵𝗼𝘀𝘁𝗻𝗮𝗺𝗲
+
+𝘀𝗰𝗽 : Securely copy files between hosts on a network.
+𝘀𝗰𝗽 𝗳𝗶𝗹𝗲.𝘁𝘅𝘁 𝘂𝘀𝗲𝗿@𝗵𝗼𝘀𝘁𝗻𝗮𝗺𝗲:/𝗽𝗮𝘁𝗵/𝘁𝗼/𝗱𝗲𝘀𝘁𝗶𝗻𝗮𝘁𝗶𝗼𝗻/
+
+𝗻𝗲𝘁𝗰𝗮𝘁 (𝗻𝗰): Network utility for reading from and writing to network connections.
+𝗻𝗰 -𝘇𝘃 𝗴𝗼𝗼𝗴𝗹𝗲.𝗰𝗼𝗺 𝟴𝟬
+
+www.google.com --> DNS
+
+Users -->Internet Gateway --> Load balancer --> (Public Subnet)Web Servers --> 
+VPC Nat Gateway --> (private subnet)app Servers --> 
+(using VPN user & customer can see the data + private subnet)DB Servers
+
+#######################Route 53########################
+
+Latency based routing
+Geo Location
+Weighted round robin
+Geo proximity
+
+############ GITLAB ############
+Pipeline: Top level component used to define a CI/CD process
+          Within pipeline, we can define stages and jobs 
+Job: Associated with stages, 
+    define the actual steps to be executed (such as running commands to compile the code)
+Stages: Define the chronological order of jobs
+Runners: Open source application that executes the instructions defined within jobs,
+        It can be installed on your local mactine, a cloud server or on-perm.
+        Shared runners are hosted by GitLab.
+
+
+######### Azure ############
+
+Azure blob
+Azure firewall
+Subscription id
+resource managers 
+VM
+Storage mounts
+NIC
+NSG
+Azure Load balancer
+Azure Scaling Set
+Vnet (virtual network)
+Express Route in Azure - On premise connect to Azure
+Virtual network peering (two Vnet)
+Azure monitoring
+Azure Key-vault(storing passwords)
+CICD pipelines
+
+
+
+1. You are managing a high-traffic web application hosted on AWS. 
+Recently, you've noticed intermittent performance issues during peak hours, 
+resulting in increased latency and occasional downtime. 
+How would you diagnose and address this issue?
+
+Answer: 
+
+   **Diagnosing Performance Issues on AWS:**
+   - Conduct performance monitoring and analysis using AWS CloudWatch metrics and logs to identify patterns during peak hours.
+   - Utilize AWS X-Ray for tracing requests and identifying bottlenecks within the application.
+   - Scale resources horizontally or vertically based on demand using AWS Auto Scaling.
+   - Optimize database queries and utilize caching mechanisms such as Amazon ElastiCache to reduce latency.
+   - Consider implementing content delivery networks (CDNs) like Amazon CloudFront to cache static assets and improve response times.
+
+2. Your company is planning to migrate its on-premises data center to AWS. 
+As part of the migration strategy, you need to ensure minimal downtime and data loss. 
+How would you plan and execute the migration process?
+
+Answer:
+
+ **Migration Planning for On-premises Data Center to AWS:**
+   - Assess current workloads and dependencies to determine migration priorities and dependencies.
+   - Plan for data migration strategies such as AWS Database Migration Service (DMS) for databases and AWS Snowball for large-scale data transfers.
+   - Utilize AWS Server Migration Service (SMS) for migrating virtual machines and AWS Direct Connect for establishing dedicated network connections.
+   - Conduct thorough testing and validation of applications in AWS before cutover to minimize downtime.
+   - Implement a rollback plan in case of any unforeseen issues during the migration process.
+
+3. You are responsible for securing an AWS infrastructure hosting sensitive customer 
+data. How would you design and implement a robust security strategy to protect against 
+data breaches and unauthorized access?
+
+Answer:
+
+ **Designing a Security Strategy for AWS Infrastructure:**
+   - Implement least privilege access controls using AWS Identity and Access Management (IAM).
+   - Encrypt data at rest and in transit using AWS Key Management Service (KMS) and AWS Certificate Manager.
+   - Enable network security using AWS Security Groups and Network Access Control Lists (NACLs).
+   - Implement logging and monitoring using AWS CloudTrail, AWS Config, and Amazon GuardDuty for threat detection.
+   - Regularly conduct security assessments and audits to ensure compliance with industry standards and regulations.
+
+4. Your application relies heavily on AWS Lambda functions for processing incoming 
+requests. Recently, you've observed a significant increase in execution times and 
+occasional timeouts. How would you optimize the performance of Lambda functions 
+to mitigate these issues?
+
+Answer:
+
+ **Optimizing AWS Lambda Function Performance:**
+   - Analyze Lambda function logs and metrics using AWS CloudWatch to identify performance bottlenecks.
+   - Optimize code execution by reducing unnecessary dependencies and optimizing resource allocation.
+   - Implement parallel processing and asynchronous invocation patterns to handle spikes in workload.
+   - Utilize provisioned concurrency to keep Lambda functions warm and reduce cold start times.
+   - Consider optimizing memory allocation and configuring timeout settings based on workload requirements.
+
+5. Your organization is experiencing exponential growth in data volume, 
+leading to increased storage costs on AWS. How would you design a cost-effective 
+storage solution that balances performance, scalability, and cost efficiency?
+
+Answer:
+
+ **Designing Cost-effective Storage Solutions on AWS:**
+   - Utilize tiered storage options such as Amazon S3 Intelligent-Tiering to automatically move data between storage classes based on access patterns.
+   - Implement data lifecycle policies to archive or delete data that is no longer needed.
+   - Utilize Amazon Glacier for long-term archival storage of infrequently accessed data.
+   - Implement data deduplication and compression techniques to reduce storage costs.
+   - Consider using Amazon EBS volumes with appropriate sizing and type selection based on performance requirements.
+
+6. You are tasked with designing a highly available and fault-tolerant architecture 
+for a critical application on AWS. How would you leverage AWS services such 
+as Auto Scaling, Elastic Load Balancing, and Multi-AZ deployments to achieve 
+high availability and resilience?
+
+Answer:
+
+ **Designing Highly Available and Fault-tolerant Architecture on AWS:**
+   - Utilize AWS Auto Scaling for automatically adjusting the number of instances based on demand.
+   - Implement Elastic Load Balancing to distribute incoming traffic across multiple instances and availability zones.
+   - Deploy applications across multiple Availability Zones (AZs) for fault tolerance using AWS Multi-AZ deployments.
+   - Utilize AWS Route 53 for DNS failover and health checks to route traffic to healthy instances.
+   - Implement distributed caching using services like Amazon ElastiCache to improve performance and resilience.
+
+7. Your development team is adopting a microservices architecture for a new project 
+on AWS. How would you design a scalable and resilient infrastructure to support 
+microservices deployment, communication, and monitoring?
+
+Answer:
+
+ **Designing Microservices Architecture on AWS:**
+   - Utilize container orchestration services like Amazon ECS or Amazon EKS for managing microservices deployment and scaling.
+   - Implement service discovery and communication using AWS App Mesh or Amazon Route 53 service discovery.
+   - Utilize centralized logging and monitoring using AWS CloudWatch and AWS X-Ray for tracing requests across microservices.
+   - Implement circuit breakers and retry mechanisms to handle failures gracefully between microservices.
+   - Design a resilient data layer using microservices patterns like CQRS (Command Query Responsibility Segregation) and event sourcing.
+
+
+8. Your company operates globally and needs to ensure low-latency access to its web 
+application for users in different geographic regions. How would you architect 
+a distributed application infrastructure using AWS services like Amazon CloudFront, 
+Amazon Route 53, and AWS Global Accelerator to optimize performance and reduce latency?
+
+Answer:
+
+ **Architecting Distributed Application Infrastructure on AWS:**
+   - Utilize Amazon CloudFront for caching content at edge locations to reduce latency for global users.
+   - Implement global DNS routing using Amazon Route 53 to direct users to the nearest AWS edge location.
+   - Utilize AWS Global Accelerator to improve the availability and performance of global applications by routing traffic over the AWS global network.
+   - Implement multi-region redundancy using AWS services like Amazon S3 cross-region replication and multi-region databases.
+   - Conduct performance testing and optimization to ensure low-latency access for users in different geographic regions.
+
+9. You are tasked with implementing disaster recovery (DR) capabilities for critical applications 
+hosted on AWS. How would you design and configure a DR solution that provides rapid recovery, 
+data integrity, and minimal downtime in the event of a disaster?
+
+Answer:
+
+ **Implementing Disaster Recovery (DR) Capabilities on AWS:**
+   - Design a multi-region architecture to ensure redundancy and failover capability across geographically distributed AWS regions.
+   - Utilize AWS services like AWS Backup for automated backups and snapshots of critical data.
+   - Implement cross-region replication for databases and storage to maintain data integrity and availability in case of regional failures.
+   - Automate failover procedures using AWS CloudFormation templates and AWS Lambda functions.
+   - Regularly test DR procedures through simulated failover drills to validate the effectiveness of the solution.
+
+10. Your organization is planning to deploy a containerized application on AWS using Amazon ECS. 
+How would you design the architecture and infrastructure to orchestrate and manage containers effectively, 
+ensuring scalability, availability, and performance?
+
+Answer:
+
+ **Designing Containerized Application Deployment on AWS with Amazon ECS:**
+    - Define ECS task definitions and configure container images, CPU, memory, and networking requirements.
+    - Utilize ECS clusters to group and manage container instances for scalability and availability.
+    - Implement service auto-scaling based on metrics like CPU utilization or request count.
+    - Configure ECS service discovery for inter-service communication using AWS CloudMap or DNS-based discovery.
+    - Implement logging and monitoring using Amazon CloudWatch Logs and AWS X-Ray for tracing requests across containers.
+
+

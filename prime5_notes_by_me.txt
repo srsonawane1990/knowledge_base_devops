@@ -627,3 +627,45 @@ Answer:
     - Implement logging and monitoring using Amazon CloudWatch Logs and AWS X-Ray for tracing requests across containers.
 
 
+
+#General Network Security:
+
+1. What is network security, and why is it important?
+2. What are the common threats to network security?
+3. Differentiate between a firewall and an intrusion detection system (IDS).
+4. What is VPN (Virtual Private Network) and how does it enhance network security?
+5. Explain the principle of least privilege.
+6. How does NAT (Network Address Translation) contribute to network security?
+7. What is the difference between symmetric and asymmetric encryption?
+
+hashtag#Virtual Private Cloud (VPC) Specific:
+
+1. Define VPC (Virtual Private Cloud) and its advantages.
+2. Explain the purpose of a subnet in a VPC.
+3. What is CIDR notation, and how is it used in VPCs?
+4. How does security group differ from a network ACL (Access Control List) in AWS VPC?
+5. What is the significance of an Internet Gateway in a VPC?
+6. How can you secure data in transit within a VPC?
+7. Explain the role of NACLs in a VPC.
+8. What are VPC Peering and when would you use it?
+9. How can you protect against DDoS attacks in a VPC?
+10. What is the purpose of a bastion host and how is it secured in a VPC?
+11. Explain the difference between AWS Security Groups and NACLs.
+12. How can you monitor and audit activities within a VPC?
+
+hashtag#Troubleshooting and Debugging:
+
+1. Describe a situation where a VPC is not reachable from the internet. How would you troubleshoot this issue?
+2. What steps would you take to investigate a sudden increase in network traffic within a VPC?
+3. Explain the process of identifying and resolving a security group misconfiguration.
+4. How would you troubleshoot a connectivity issue between two instances in separate subnets within the same VPC?
+5. Describe a scenario where a misconfigured NACL is causing connectivity problems. How would you identify and fix the issue?
+
+hashtag#Best Practices:
+
+1. What are some best practices for securing a VPC?
+2. Explain the principle of "least privilege" in the context of VPC security.
+3. How can you ensure data integrity and confidentiality in a VPC?
+4. Discuss strategies for securing sensitive data stored in Amazon S3 within a VPC.
+5. How can you implement multi-factor authentication (MFA) for accessing resources within a VPC?
+

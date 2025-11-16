@@ -148,7 +148,7 @@ Deployment: Deployment is a resource that manages a set of identical pods.
 
 
 StatefulSet: StatefulSet is a resource that manages a set of identical stateful pods. 
-             It’s useful for managing stateful applications that require stable network identities and persistent storage.
+      It’s useful for managing stateful applications that require stable network identities and persistent storage.
 1. Ordered pod creation: StatefulSet ensures that each pod is created in a specific order, 
 			allowing applications to rely on the order of pod creation for initialization tasks.
 2. Stable network identities: StatefulSet provides stable network identities for each pod, 
@@ -206,7 +206,7 @@ https://github.com/srsonawane1990/solution
 
 How to connect docker compose container to normal container
 
-Docker benificts:
+Docker benifits:
 1. Scalling 
 2. Networking
 3. Shift and transport
@@ -668,4 +668,36 @@ hashtag#Best Practices:
 3. How can you ensure data integrity and confidentiality in a VPC?
 4. Discuss strategies for securing sensitive data stored in Amazon S3 within a VPC.
 5. How can you implement multi-factor authentication (MFA) for accessing resources within a VPC?
+
+
+NVIDIA Interview questions:
+𝐑𝐨𝐮𝐧𝐝 𝟏 - 𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥
+
+1) What is DNS , HTTP and HTTPS protocol (53, 80, 443).     SSH, NFS, SFTP , FTP (22, 2049, 22,21)
+2) How the packets are transferred from one point to other(Internet and intranet)
+3) WIFI enablement and device connectivity
+4) The ports for some requests
+5) Router and DHCP working
+6) Linux commands and networking commands related to linux. (firewall cmd, nmcli connection modify)
+7) Commands to open and block the ips in linux. (iptables -I INPUT -s xxx.xxx.xxx.xxx -j DROP)
+8) )What is the memory capacity and size of servers for jenkins master, slave, sonarqube, maven,docker, kubernetes, Prometheus, Grafana?
+9) secure database, what disaster recovery strategy do you follow? What strategy follows for Jenkins master slave architecture in your organisation?
+
+
+𝐑𝐨𝐮𝐧𝐝 𝟐 - 𝐂𝐨𝐝𝐢𝐧𝐠
+
+10) Discuss monitoring and login options available for eks clusters
+11) How EKS handle updates and patches for K8s control plane and worker notes
+12) Concept of worker notes in E K S how they are provisioned
+13) How to optimise performance of applications running on EKS consider for multi region deployments with Amazon eks
+14) )What is the difference between a Helm release and a Helm chart? 🔍How do you deploy a Helm chart to a Kubernetes cluster?
+
+𝐑𝐨𝐮𝐧𝐝 𝟑- 𝐒𝐲𝐬𝐭𝐞𝐦 𝐃𝐞𝐬𝐢𝐠𝐧
+
+15) Describe how you would design the deployment architecture for the microservices-based application using Docker to ensure high availability and scalability.
+
+𝐑𝐨𝐮𝐧𝐝 𝟒 - 𝐌𝐚𝐧𝐚𝐠𝐞𝐫𝐢𝐚𝐥/𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥
+
+16) Can you describe a difficult interaction you've had with a customer? How did you deal with it? Thinking back, what would you do differently?
+17) Tell me about a time when you were working on an initiative and saw an opportunity to do something bigger or better than the initial focus. Also how did you convince your team
 
